@@ -1,24 +1,23 @@
 <?php
-    /** @var $pdo PDO */
-    require_once "database.php";
+/** @var $pdo PDO */
+require_once "../../database.php";
 
-    $search = $_GET['search'] ?? '';
-    if ($search) {
-        $statement = $pdo->prepare('SELECT * FROM products WHERE title LIKE :title ORDER BY CREATE_DATE DESC');
-        $statement->bindValue(':title', "%$search%");
+$search = $_GET['search'] ?? '';
+if ($search) {
+    $statement = $pdo->prepare('SELECT * FROM products WHERE title LIKE :title ORDER BY CREATE_DATE DESC');
+    $statement->bindValue(':title', "%$search%");
 
-    } else {
-        // select products
-        $statement = $pdo->prepare('SELECT * FROM products ORDER BY CREATE_DATE DESC');
-    }
+} else {
+    // select products
+    $statement = $pdo->prepare('SELECT * FROM products ORDER BY CREATE_DATE DESC');
+}
 
-    $statement->execute();
-    $products = $statement->fetchAll(PDO::FETCH_ASSOC);
-
+$statement->execute();
+$products = $statement->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 
-<?php include_once "views/partials/header.php"?>
+<?php include_once "../../views/partials/header.php" ?>
 
 <h1>Products CRUD</h1>
 
@@ -52,7 +51,7 @@
     <?php foreach($products as $i => $product) { ?>
         <tr>
             <th scope="row"><?php echo $i + 1 ?></th>
-            <td><img src="<?php echo $product['image'] ?>" class="thumbnail"></td>
+            <td><img src="/<?php echo $product['image'] ?>" class="thumbnail"></td>
             <td><?php echo $product['title']?></td>
             <td><?php echo $product['price']?></td>
             <td><?php echo $product['create_date']?></td>
@@ -69,4 +68,4 @@
     </tbody>
 </table>
 
-<?php include_once "views/partials/footer.php"?>
+<?php include_once "../../views/partials/footer.php" ?>
