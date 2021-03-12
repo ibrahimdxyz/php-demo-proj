@@ -15,7 +15,6 @@ $product = [
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-
     require_once "validate-product.php";
 
     if (empty($errors)) {
@@ -26,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $statement->bindValue(':image', $imagePath);
         $statement->bindValue(':description', $description);
         $statement->bindValue(':price', $price);
-        $statement->bindValue(':date', ("Y-m-d H:i:s"));
+        $statement->bindValue(':date', date("Y-m-d H:i:s"));
         $statement->execute();
 
 
