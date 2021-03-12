@@ -1,0 +1,17 @@
+body {
+    padding: 10em;
+}
+
+.thumbnail {
+    width: 40px;
+}
+
+
+.old-thumbnail {
+    width: 120px;
+}
+
+.input-group {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
