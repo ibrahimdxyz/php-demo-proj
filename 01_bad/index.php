@@ -2,10 +2,20 @@
     $pdo = new PDO('mysql:host=localhost;port=3306;dbname=products_crud', 'phpmyadmin', 'phpmyadmin'); $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    // select products
-    $statement = $pdo->prepare('SELECT * FROM products ORDER BY CREATE_DATE DESC');
+
+    $search = $_GET['search'] ?? '';
+    if ($search) {
+        $statement = $pdo->prepare('SELECT * FROM products WHERE title LIKE :title ORDER BY CREATE_DATE DESC');
+        $statement->bindValue(':title', "%$search%");
+
+    } else {
+        // select products
+        $statement = $pdo->prepare('SELECT * FROM products ORDER BY CREATE_DATE DESC');
+    }
+
     $statement->execute();
     $products = $statement->fetchAll(PDO::FETCH_ASSOC);
+
 ?>
 
 
@@ -28,10 +38,15 @@
     </div>
 
 
-    <div class="input-group mb-3">
-        <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2">
-        <span class="input-group-text" id="basic-addon2">@example.com</span>
-    </div>
+
+    <form>
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Search for Products" name="search" value="<?php echo $search?>">
+            <div class="input-group-append">
+                <button type="submit" class="btn btn-outline-secondary" basic-addon2">🔍</button>
+            </div>
+        </div>
+    </form>
 
     <table class="table">
         <thead>
