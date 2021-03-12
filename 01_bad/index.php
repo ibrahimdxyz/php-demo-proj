@@ -1,5 +1,7 @@
 <?php
     $pdo = new PDO('mysql:host=localhost;port=3306;dbname=products_crud', 'phpmyadmin', 'phpmyadmin'); $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
     // select products
     $statement = $pdo->prepare('SELECT * FROM products ORDER BY CREATE_DATE DESC');
     $statement->execute();
@@ -23,7 +25,12 @@
 
     <div>
         <a href="create.php" class="btn btn-success">Create Product</a>
+    </div>
 
+
+    <div class="input-group mb-3">
+        <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2">
+        <span class="input-group-text" id="basic-addon2">@example.com</span>
     </div>
 
     <table class="table">

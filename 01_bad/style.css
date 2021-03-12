@@ -5,3 +5,8 @@ body {
 .thumbnail {
     width: 40px;
 }
+
+
+.old-thumbnail {
+    width: 120px;
+}
