@@ -1,0 +1,19 @@
+{
+    "name": "ibrahim/03_good",
+    "description": "",
+    "authors": [
+        {
+            "name": "Ibrahim Aldarra",
+            "email": "ibrahim.aldarra@student.hu.nl"
+        }
+    ],
+    "require": {
+        "ext-pdo": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "app\\": "./"
+        }
+    }
+
+}

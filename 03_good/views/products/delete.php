@@ -1,0 +1,1 @@
+<h1>Delete product</h1>
